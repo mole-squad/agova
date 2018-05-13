@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "node_modueles/.bin/tsc; node dist/main.js"
+  },
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "tsc": "^1.20150623.0",
+    "typescript": "^2.8.3"
+  }
+}
