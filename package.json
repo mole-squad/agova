@@ -9,6 +9,7 @@
     "lodash": "^4.17.10",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5",
+    "sequelize": "^4.37.7",
     "tsc": "^1.20150623.0",
     "typescript": "^2.8.3"
   }
