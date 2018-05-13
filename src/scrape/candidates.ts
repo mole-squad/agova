@@ -1,4 +1,4 @@
-import { HTTPWrapper } from './http';
+import { HTTPWrapper } from '../lib/http';
 import * as fs from 'fs'
 
 const http = HTTPWrapper.getInstance();
