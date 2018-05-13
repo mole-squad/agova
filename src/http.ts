@@ -12,9 +12,10 @@ export class HTTPWrapper {
 
   private static instance: HTTPWrapper;
 
-  public get(url: string, returnFullResponse?: boolean) {
+  public get(url: string, qs: object = {}, returnFullResponse?: boolean) {
     return request.get({
       url,
+      qs,
       headers: this.buildHeader(),
       json: true,
       resolveWithFullResponse: true
@@ -27,20 +28,20 @@ export class HTTPWrapper {
     });
   }
 
-  public post(url: string, params: object, returnFullResponse?: boolean) {
-    return this.update('POST', url, params, returnFullResponse);
+  public post(url: string, qs: object = {}, params: object, returnFullResponse?: boolean) {
+    return this.update('POST', url, params, qs, returnFullResponse);
   }
 
-  public put(url: string, params: object, returnFullResponse?: boolean) {
-    return this.update('PUT', url, params, returnFullResponse);
+  public put(url: string, qs: object = {}, params: object, returnFullResponse?: boolean) {
+    return this.update('PUT', url, params, qs, returnFullResponse);
   }
 
-  public patch(url: string, params: object, returnFullResponse?: boolean) {
-    return this.update('PATCH', url, params, returnFullResponse);
+  public patch(url: string, qs: object = {}, params: object, returnFullResponse?: boolean) {
+    return this.update('PATCH', url, params, qs, returnFullResponse);
   }
 
-  public delete(url: string, params: object = {}, returnFullResponse?: boolean) {
-    return this.update('DELETE', url, params, returnFullResponse);
+  public delete(url: string, qs: object= {}, params: object = {}, returnFullResponse?: boolean) {
+    return this.update('DELETE', url, params, qs, returnFullResponse);
   }
 
   public postForm(url: string, formData: object, returnFullResponse?: boolean) {
@@ -58,10 +59,11 @@ export class HTTPWrapper {
     });
   }
 
-  private update(method, url: string, params: object, returnFullResponse?: boolean) {
+  private update(method, url: string, qs: object = {}, params: object, returnFullResponse?: boolean) {
     return request({
       method,
       url,
+      qs,
       headers: this.buildHeader(),
       body: params,
       json: true,
@@ -76,10 +78,8 @@ export class HTTPWrapper {
   }
 
   private logRequest(response, method, url: string, params?: object) {
-    if (process.env.E2E_DEBUG) {
-      // tslint:disable-next-line:no-console
-      console.log(`${ response.statusCode } ${ method } ${ url }`);
-    }
+    // tslint:disable-next-line:no-console
+    console.log(`${ response.statusCode } ${ method } ${ url }`);
   }
 
   private onError(err: IErrResponse, method: string, url: string, params?: object) {
