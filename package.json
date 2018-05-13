@@ -1,11 +1,12 @@
 {
   "scripts": {
-    "start": "node_modules/.bin/tsc; node dist/main.js"
+    "start": "node_modules/.bin/tsc; node --no-deprecation dist/main.js"
   },
   "dependencies": {
     "@types/node": "^10.0.8",
     "@types/request": "^2.47.0",
     "fetch": "^1.1.0",
+    "lodash": "^4.17.10",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5",
     "tsc": "^1.20150623.0",

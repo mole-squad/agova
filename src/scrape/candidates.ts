@@ -1,29 +1,23 @@
-import { HTTPWrapper } from '../lib/http';
 import * as fs from 'fs'
 
+import { API_KEY, FECUrl as url } from './fec';
+import { HTTPWrapper } from '../lib/http';
+
 const http = HTTPWrapper.getInstance();
-
-const API_KEY = process.env.FEC_API_KEY;
-
-const BASE_URL = 'https://api.open.fec.gov/v1';
-
-const url = aUrl => `${ BASE_URL }${ aUrl }`;
-
-const results = {
-
-};
+const results = {};
 
 let maxPages;
 
-export function getPage(pageNumber) {
+function getPage(pageNumber: number, year: number) {
   const params = {
     api_key: API_KEY,
-    cycle: 2016,
+    cycle: year,
     office: 'P',
     per_page: 50,
     page: pageNumber,
     sort: 'name'
   };
+
   return http.get(url('/candidates/search'), params).then(data => {
     for (let i = 0; i < data.results.length; ++i) {
       results[data.results[i].candidate_id] = data.results[i];
@@ -37,10 +31,10 @@ export function getPage(pageNumber) {
   })
 };
 
-export function main() {
-  getPage(1).then( () => {
+export function getCandidates(year) {
+  getPage(1, year).then( () => {
     for (let i = 2; i <= maxPages; ++i) {
-      getPage(i);
+      getPage(i, year);
     }
   })
 };
