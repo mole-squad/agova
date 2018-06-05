@@ -6,9 +6,12 @@ Analyzing FEC data on political spending
  - Install node dependencies ```yarn install```
  - Install postgress using your package manager of choice (```brew install postgres```)
  - Start the postgres service ```brew services start postgresql```
- - Initialize the database ```yarn run init-db```
- - Run Migrations ```yarn run migrate```
+ - Initialize the database ```yarn run db:init```
  
+## Loading Data
+ - 2016 Presidential Data ```yarn run load:2016```
+
+
 ## Useful Resources
 
  - [FEC API Documentation](https://api.open.fec.gov/developers/)

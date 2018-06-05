@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "init-db": "sequelize db:create",
-    "migrate": "sequelize db:migrate",
+    "db:drop": "sequelize db:drop",
+    "db:init": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "load:2016": "node db/loaders/load-2016-data.js",
     "start": "node_modules/.bin/tsc; node --no-deprecation dist/main.js"
   },
   "dependencies": {
