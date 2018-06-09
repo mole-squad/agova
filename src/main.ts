@@ -6,4 +6,4 @@ import { getCandidates } from './scrape/candidates';
 
 
 // getCommitteess(2016);
-getCandidates(2012);
+// getCandidates(2012);
